@@ -21,7 +21,7 @@ public class MatchController {
     }
 
     @GetMapping("/{requestedId}")
-    private ResponseEntity<Match> findById(@PathVariable String id) {
+    private ResponseEntity<Match> findById(@PathVariable Long id) {
         Optional<Match> matchOptional = repository.findById(id);
         if (matchOptional.isPresent()) {
             return ResponseEntity.ok(matchOptional.get());
