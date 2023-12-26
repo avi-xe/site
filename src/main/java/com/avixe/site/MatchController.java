@@ -1,28 +1,23 @@
 package com.avixe.site;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Optional;
+import java.security.Principal;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/match")
 public class MatchController {
-    private final MatchRepository repository;
+    private final MatchRepository matchRepository;
 
-    public MatchController(final MatchRepository repository) {
-        this.repository = repository;
+    public MatchController(MatchRepository matchRepository) {
+        this.matchRepository = matchRepository;
     }
 
     @GetMapping("/{requestedId}")
-    private ResponseEntity<Match> findById(@PathVariable Long id) {
-        Optional<Match> matchOptional = repository.findById(id);
+    private ResponseEntity<Match> findById(@PathVariable Long requestedId, Principal principal) {
+        Optional<Match> matchOptional = matchRepository.findById(requestedId);
         if (matchOptional.isPresent()) {
             return ResponseEntity.ok(matchOptional.get());
         } else {

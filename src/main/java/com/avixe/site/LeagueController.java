@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LeagueController {
     private final LeagueRepository repository;
 
-    public LeagueController(final LeagueRepository repository) {
+    public LeagueController(LeagueRepository repository) {
         this.repository = repository;
     }
 
@@ -25,5 +25,11 @@ public class LeagueController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/")
+    private ResponseEntity<Iterable<League>> findAll() {
+        Iterable<League> leagues = repository.findAll();
+        return ResponseEntity.ok(leagues);
     }
 }

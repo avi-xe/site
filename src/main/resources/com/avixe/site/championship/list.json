@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Premier League 21-22",
+        "leagueId": 1,
+        "yearId": 2
+    },
+    {
+        "id": 2,
+        "name": "La Liga 21-22",
+        "leagueId": 2,
+        "yearId": 2
+    },
+    {
+        "id": 3,
+        "name": "Serie A 21-22",
+        "leagueId": 3,
+        "yearId": 2
+    },
+    {
+        "id": 4,
+        "name": "Bundesliga 21-22",
+        "leagueId": 4,
+        "yearId": 2
+    }
+]

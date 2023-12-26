@@ -1,5 +1,7 @@
 package com.avixe.site;
 
-public record Championship(Long id, String name, Long leagueId, long yearId) {
+import org.springframework.data.annotation.Id;
+
+public record Championship(@Id Long id, String name, Long leagueId, long yearId) {
     
 }
