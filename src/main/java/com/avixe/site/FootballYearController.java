@@ -3,6 +3,7 @@ package com.avixe.site;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -18,15 +19,15 @@ public class FootballYearController {
         this.repository = repository;
     }
 
-    @GetMapping("/")
-    private ResponseEntity<Iterable<FootballYear>> findAll() {
+    @GetMapping
+    private ResponseEntity<Iterable<FootballYear>> findAll(Principal principal) {
         Iterable<FootballYear> years = repository.findAll();
         return ResponseEntity.ok(years);
     }
 
     @GetMapping("/{requestedId}")
-    private ResponseEntity<FootballYear> findById(@PathVariable Long id) {
-        Optional<FootballYear> yearOptional = repository.findById(id);
+    private ResponseEntity<FootballYear> findById(@PathVariable Long requestedId, Principal principal) {
+        Optional<FootballYear> yearOptional = repository.findById(requestedId);
         if (yearOptional.isPresent()) {
             return ResponseEntity.ok(yearOptional.get());
         } else {

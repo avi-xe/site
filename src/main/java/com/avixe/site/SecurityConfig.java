@@ -19,8 +19,8 @@ class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/**")
-                        .hasRole("OWNER"))
+                        .requestMatchers("**")
+                        .hasRole("ADMIN"))
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
@@ -37,7 +37,7 @@ class SecurityConfig {
         UserDetails avixe = users
                 .username("avi-xe")
                 .password(passwordEncoder.encode("abc123"))
-                .roles("OWNER")
+                .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(avixe);
     }
